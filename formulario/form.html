@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+
+	<! Añadimos meta "author" y "description">
+		<meta name="author" content="Luis Miguel Fuster">
+		<meta name="description" content="Campeones del Mundo de Ajedrez">
+
+	<! Añadimos el titulo a nuestra pagina visible en el navegador>
+		<title>Resultado del formulario</title>
+
+	<! Añadimos el icono que personaliza nuestra pagina web en el navegador>
+		<link rel="icon" href="imagen/favicon.png" type="image/png">
+	
+
+	</head>
+	<body>
+		
+		<a href="../index.html"><h1>Elige tu mejor jugador de Ajedrez</h1></a>
+		<p>Como bien sabemos resultaria injusto determinar que jugador es el mejor del mundo, hay incluso grandes jugadores que han sido ejemplo de su juego y no llegaron a ser campeones pero su legado ha quedado para la posteridad</p>
+	
+	
+	<! formulario de selección de jugadores>
+		
+		
+		<form action="datos.txt" method="post">
+			<fieldset>	
+				<legend>Elección</legend>
+				<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+					<label for="jugadores" id="jugadores">¿Qué jugador es el mejor del mundo?</label><br><br>
+					<select name="jugador" id="jugador">
+						<option value="0">Selecciona</option>
+						<option value="1">Wilhelm Steinitz</option>
+						<option value="2">Enmanuel Lasker</option>
+						<option value="3">José Raúl Capablanca</option>
+						<option value="4">Alexandre Alekhine</option>
+						<option value="5">Max Euwe</option>
+						<option value="6">Mijail Botvinnik</option>
+						<option value="7">Vasily Smislov</option>
+						<option value="8">Mikhail Tal</option>
+						<option value="9">Tigran Pretrosian</option>
+						<option value="10">Boris Spassky</option>
+						<option value="11">Bobboy Fisher</option>
+						<option value="12">Anatoly Karpov</option>
+						<option value="13">Gary Kasparov</option>
+						<option value="14">Vladimir Krammik</option>
+						<option value="15">Aleksandr Jálifman</option>
+						<option value="16">Viswanathan Anand</option>
+						<option value="17">Ruslan Ponomariov</option>
+						<option value="18">RUslan Kasimdzhanov</option>
+						<option value="19">Veselin Topalov</option>
+						<option value="20">Magnus Carlsen</option>
+						<option value="21">Ding Liren</option>
+					<br>
+					<input type="button" onclick="verfoto()" value="Seleccionar">
+					</select>
+					<br><br>
+					
+						<div id="foto"></div>
+						
+	<! Script adaptada para poder sacar la foto en la selección del jugador>
+				
+				<script>
+					function verfoto(){
+					var selected = $('#jugador option:selected').val();
+					$('#foto').html('<Img src="images/'+selected+'.png">');
+						}		
+				</script>
+					<textarea id="descripcion" cols="50" rows="10" placeholder="Deja un comentario de tu campeón"></textarea>
+			</fieldset>				
+	
+	<! Segundo formulario de contacto>
+	
+				<fieldset>
+					<legend>Datos de contacto</legend>
+							<label for="name">Nombre</label><br>
+							<input type="text" id="name" name="name" placeholder="Ingresa tu nombre" autofocus><br>
+							
+							<label for="apellido">Apellido</label><br>
+							<input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido"><br>
+			
+							<label for="email">Correo</label><br>
+							<input type="email" id="email" name="email" maxlength="50" placeholder="Ingresa tu correo electrónico" required><br>
+						<br>
+				</fieldset>		
+						<br>
+							<input type="submit" onclick="guardarDatos()" value="Enviar">
+							<input type="reset" value="Borrar">
+				<script>
+						function guardarDatos() {
+					// Obtener los valores del formulario
+						  var jugador = document.getElementById("jugador").value;
+						  var name = document.getElementById("name").value;
+						  var apellido = document.getElementById("apellido").value;
+						  var email = document.getElementById("email").value;
+						  var descripcion = document.getElementById("descripcion").value;
+
+					// Crear el contenido del archivo TXT
+						  var contenido = "Jugador: " + jugador + "\nName: " + name + "\nApellido: " + apellido + "\nEmail: " + email + "\nComentarios: " + descripcion;
+
+					// Crear un Blob con el contenido y configurar el nombre del archivo
+						  var blob = new Blob([contenido], { type: "text/plain;charset=utf-8" });
+						  var nombreArchivo = "datos.txt";
+
+					// Crear un enlace de descarga y hacer clic en él para descargar el archivo
+						  var enlaceDescarga = document.createElement("a");
+						  enlaceDescarga.href = window.URL.createObjectURL(blob);
+						  enlaceDescarga.download = nombreArchivo;
+
+						  document.body.appendChild(enlaceDescarga);
+						  enlaceDescarga.click();
+
+						  document.body.removeChild(enlaceDescarga);
+						}
+				</script>
+		</form>
+	</body>
+</html>
